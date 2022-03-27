@@ -13,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.util.PatternsCompat
 import androidx.core.view.marginBottom
 import androidx.core.widget.addTextChangedListener
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -125,12 +126,13 @@ class RegisterActivity : AppCompatActivity() {
         databaseAccess.open()
 
         //Autocompletado estado civil
-        var cantida= databaseAccess.cantidadAllDatos("Statuscivil")
-        var nombresDepartmens = databaseAccess.getDatos(cantida,"Statuscivil")
+        val cantida= databaseAccess.cantidadAllDatos("Statuscivil")
+        val nombresDepartmens = databaseAccess.getDatos(cantida,"Statuscivil")
         databaseAccess.close()
 
-        var adapterStatus = ArrayAdapter(this, android.R.layout.select_dialog_item, nombresDepartmens)
-        edt_estado_civil.threshold = 1
+        val adapterStatus = ArrayAdapter(this, android.R.layout.select_dialog_item, nombresDepartmens)
+        edt_estado_civil.keyListener = null
+        edt_estado_civil.threshold = 0
         edt_estado_civil.setAdapter(adapterStatus)
     }
 
@@ -144,11 +146,11 @@ class RegisterActivity : AppCompatActivity() {
         //SE Genera un error si le no validamos si el departamento esta bein escrito y fue encontrado en la base de datos
         //Se soluciona este errror validando si la cantidad de departamentos consultados en la base de datos es diferente de 0
         var nombresCity = Array<String>(size = cantidaCity, init = { index -> "" })
-      //  if(cantidaCity != 0){
+        if(cantidaCity != 0){
             nombresCity = databaseAccess.getDatosCity(cantidaCity,edt_departmen.text.toString())
-      //  }else{
-       //     nombresCity = Array<String>(size = 1, init = { index -> "" })
-      //  }
+        }else{
+            nombresCity = Array<String>(size = 1, init = { index -> "" })
+        }
 
         var adapterCity = ArrayAdapter(this, android.R.layout.select_dialog_item, nombresCity)
         edt_city.threshold = 0
@@ -161,8 +163,16 @@ class RegisterActivity : AppCompatActivity() {
 
     fun validacionCamposVacidos(){
         //Validaciones del Correo Electronico
-        if(edt_correo.text.toString().isEmpty()){
+        val correo = edt_correo.text.toString()
+        if(correo.isEmpty()){
             lyt_correo.error = "Por Favor Ingrese el Correo"
+            edt_correo.height= 5
+            edt_correo.setPaddingRelative(20,7,7,-7)
+            emptyData++
+
+        }else if( !PatternsCompat.EMAIL_ADDRESS.matcher(correo).matches()){
+            //se verifica qeuse aya escrito un correo electronico valido
+            lyt_correo.error = "Por Favor Ingrese un Correo valido"
             edt_correo.height= 5
             edt_correo.setPaddingRelative(20,7,7,-7)
             emptyData++
