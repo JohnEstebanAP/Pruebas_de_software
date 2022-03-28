@@ -90,6 +90,7 @@ class RegisterActivity : AppCompatActivity() {
                 if (edt_estado_civil.text.toString().length >= 5) {
                     edt_estado_civil.inputType = InputType.TYPE_TEXT_FLAG_AUTO_COMPLETE
                     lyt_estado_civil.endIconMode = TextInputLayout.END_ICON_CLEAR_TEXT
+                    edt_telefono.requestFocus()
                 }
                 edt_estado_civil.keyListener = null
             }
@@ -296,6 +297,8 @@ class RegisterActivity : AppCompatActivity() {
         edt_departmen.setText("")
         edt_city.setText("")
         edt_direccion.setText("")
+        ed_pais.text.clear()
+        edt_telefono.text?.clear()
     }
 
     fun AlertRegistroexitoso() {
