@@ -33,16 +33,27 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
+        //
+        controlFlujoedt()
         //Aplicamos la funcion de auto completado para el editext de Departamentos
         listarPais()
         //Aplicamos la funcion de auto completado para el editext de Departamentos
-        listarDepartmen()
-        //Aplicamos la funcion de autoCompletado para el editext de Stado civil
-        listarStatusCivil()
+        ed_pais.addTextChangedListener(object : TextWatcher {
+          override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+          override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+          override fun afterTextChanged(p0: Editable?) {
+              if (ed_pais.text.toString().length >= 3) {
+                  var nombre = listarStates()
+                  edt_departmen.setText(nombre.get(0).toString() ?: "")
+              } else {
+                  edt_departmen.setText("")
+              }
+          }
+        })
 
         //Controlamos los eventos del tecaldo para cuando se preciona enter
-        controlFlujoedt()
-      /*  edt_departmen.addTextChangedListener(object : TextWatcher {
+        edt_departmen.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
 
@@ -59,7 +70,10 @@ class RegisterActivity : AppCompatActivity() {
                 }
             }
 
-        })*/
+        })
+
+        //Aplicamos la funcion de autoCompletado para el editext de Stado civil
+        listarStatusCivil()
 
         edt_estado_civil.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -144,40 +158,25 @@ class RegisterActivity : AppCompatActivity() {
         ed_pais.setAdapter(adapterPais)
     }
 
-    fun listarDepartmen() {
-        val databaseAccess = DatabaseAccess.getInstance(this)
-        databaseAccess.open()
-
-        //Autocompletado Departamentos
-        var cantidaDeparments = databaseAccess.cantidadAllDatos("States")
-        var nombresDepartmens = databaseAccess.getDatos(cantidaDeparments, "States")
-        databaseAccess.close()
-
-        var adapterDepartmen =
-            ArrayAdapter(this, android.R.layout.select_dialog_item, nombresDepartmens)
-        edt_departmen.threshold = 1
-        edt_departmen.setAdapter(adapterDepartmen)
-    }
-
     fun listarStates(): Array<String> {
         val databaseAccess = DatabaseAccess.getInstance(this)
         databaseAccess.open()
 
         //Autocompletado ciudad
-        var cantidaStates = databaseAccess.cantidadAllWhere("States",  "id_country", "Countries"" ,ed_pais.text.toString())
-
+        var cantidaStates = databaseAccess.cantidadAllWhere("States",  "id_country", "Countries" ,ed_pais.text.toString())
+        Toast.makeText(this, "cantiadad departamentos: "+ cantidaStates, Toast.LENGTH_SHORT).show()
         //SE Genera un error si le no validamos si el departamento esta bein escrito y fue encontrado en la base de datos
         //Se soluciona este errror validando si la cantidad de departamentos consultados en la base de datos es diferente de 0
         var nombresStates = Array<String>(size = cantidaStates, init = { index -> "" })
         if (cantidaStates != 0) {
-            nombresStates = databaseAccess.getDatosCity(cantidaStates, edt_departmen.text.toString())
+            nombresStates = databaseAccess.getDatosWhere( cantidaStates,"States",  "id_country", "Countries" ,ed_pais.text.toString())
         } else {
             nombresStates = Array<String>(size = 1, init = { index -> "" })
         }
 
-        var adapterCity = ArrayAdapter(this, android.R.layout.select_dialog_item, nombresStates)
-        edt_city.threshold = 0
-        edt_city.setAdapter(adapterCity)
+        var adapterState = ArrayAdapter(this, android.R.layout.select_dialog_item, nombresStates)
+        edt_departmen.threshold = 0
+        edt_departmen.setAdapter(adapterState)
         databaseAccess.close()
 
         return nombresStates
@@ -204,13 +203,13 @@ class RegisterActivity : AppCompatActivity() {
         databaseAccess.open()
 
         //Autocompletado ciudad
-        var cantidaCity = databaseAccess.cantidadAllCity(edt_departmen.text.toString())
+        var cantidaCity = databaseAccess.cantidadAllWhere("cities",  "id_state", "States" ,edt_departmen.text.toString())
 
         //SE Genera un error si le no validamos si el departamento esta bein escrito y fue encontrado en la base de datos
         //Se soluciona este errror validando si la cantidad de departamentos consultados en la base de datos es diferente de 0
         var nombresCity = Array<String>(size = cantidaCity, init = { index -> "" })
         if (cantidaCity != 0) {
-            nombresCity = databaseAccess.getDatosCity(cantidaCity, edt_departmen.text.toString())
+            nombresCity = databaseAccess.getDatosWhere( cantidaCity,"cities",  "id_state", "States" ,edt_departmen.text.toString())
         } else {
             nombresCity = Array<String>(size = 1, init = { index -> "" })
         }

@@ -80,14 +80,14 @@ public class DatabaseAccess {
 
 
     //Consultar los cidades
-    public String[] getDatosCity(int cantidaCity, String city) {
-        c = db.rawQuery(" SELECT name FROM cities c  WHERE id_state  = (SELECT id FROM States s  WHERE name = '"+city+"')" +
+    public String[] getDatosWhere(int cantidadatos, String table, String where, String tableWhere,  String namedate)  {
+        c = db.rawQuery(" SELECT name FROM "+table+"  WHERE "+where+" = (SELECT id FROM "+tableWhere+"  WHERE name = '"+namedate+"')" +
                 "    ", new String[]{});
-        String[] valores = new String[cantidaCity];
+        String[] valores = new String[cantidadatos];
         int i = 0;
         while (c.moveToNext()) {
-            String citys = c.getString(0);
-            valores[i] = citys;
+            String namedatos = c.getString(0);
+            valores[i] = namedatos;
             i++;
         }
         return valores;
