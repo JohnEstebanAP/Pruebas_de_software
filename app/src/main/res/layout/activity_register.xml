@@ -151,6 +151,7 @@
                         android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -164,21 +165,20 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/style_btn_2"
                         android:gravity="center"
-                        android:paddingHorizontal="4dp"
-                        android:hint="Correo Electronico">
+                        android:hint="Correo Electronico"
+                        android:paddingHorizontal="4dp">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:background="@drawable/style_btn_2"
                             android:id="@+id/edt_correo"
                             android:layout_width="match_parent"
                             android:layout_height="35dp"
+                            android:background="@drawable/style_btn_2"
                             android:inputType="textEmailAddress"
                             android:maxLength="70"
-                            android:textColorHighlight="@color/color_primary"
-                            android:textCursorDrawable="@null"
-                            android:paddingBottom="7dp"
                             android:paddingTop="7dp"
-                            />
+                            android:paddingBottom="7dp"
+                            android:textColorHighlight="@color/color_primary"
+                            android:textCursorDrawable="@null" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -198,19 +198,20 @@
                         app:layout_constraintStart_toStartOf="@+id/cardView"
                         app:layout_constraintTop_toTopOf="@+id/cardView" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/lyt_name1"
+                        android:id="@+id/lyt_name1"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/style_btn_2"
-                        android:paddingHorizontal="4dp"
-                        android:hint="Nombre Completo">
+                        android:hint="Nombre Completo"
+                        android:paddingHorizontal="4dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_name1"
@@ -220,10 +221,9 @@
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                             android:inputType="textPersonName"
                             android:maxLength="70"
-                            android:textColorHighlight="@color/color_primary"
                             android:paddingTop="7dp"
                             android:paddingBottom="7dp"
-                            />
+                            android:textColorHighlight="@color/color_primary" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -244,6 +244,7 @@
                         app:layout_constraintEnd_toEndOf="@+id/cardView"
                         app:layout_constraintTop_toTopOf="@+id/cardView" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -255,8 +256,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/style_btn_2"
-                       android:paddingHorizontal="4dp"
-                        android:hint="Primer Apellido">
+                        android:hint="Primer Apellido"
+                        android:paddingHorizontal="4dp">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/edt_apellido"
@@ -267,8 +268,8 @@
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                             android:inputType="textPersonName"
                             android:maxLength="70"
-                            android:paddingBottom="7dp"
                             android:paddingTop="7dp"
+                            android:paddingBottom="7dp"
                             android:textColorHighlight="@color/color_primary" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -290,24 +291,35 @@
                         android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-
-                    <AutoCompleteTextView
-                        android:id="@+id/ed_pais"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:layout_height="50dp"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/style_btn_2"
-                        android:gravity="center"
                         android:hint="País"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                        android:inputType="textAutoComplete"
-                        android:maxLength="70"
-                        android:textColorHighlight="@color/color_primary"
-                        />
+                        android:paddingHorizontal="4dp"
+                        app:endIconMode="dropdown_menu">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/ed_pais"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:background="@drawable/style_btn_2"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                            android:gravity="center"
+                            android:inputType="textAutoComplete"
+                            android:maxLength="70"
+                            android:paddingTop="7dp"
+                            android:paddingBottom="7dp"
+                            android:textColorHighlight="@color/color_primary" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
                 </LinearLayout>
 
                 <!-- Departamento Ciudad -->
@@ -336,39 +348,58 @@
                         android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
-                    <AutoCompleteTextView
-                        android:id="@+id/edt_departmen"
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="160dp"
-                        android:minHeight="50dp"
                         android:layout_height="wrap_content"
+                        android:background="@drawable/style_btn_2"
                         android:hint="Departamento"
-                        android:background="@drawable/style_btn_2"
-                        android:layout_marginEnd="10dp"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                        android:inputType="textAutoComplete"
-                        android:maxLength="70"
-                        android:paddingStart="20dp"
-                        />
+                        android:paddingHorizontal="4dp"
+                        android:layout_marginEnd="4dp"
+                        app:endIconMode="dropdown_menu">
 
+                        <AutoCompleteTextView
+                            android:id="@+id/edt_departmen"
+                            android:layout_width="160dp"
+                            android:layout_height="35dp"
 
-                    <AutoCompleteTextView
-                        android:id="@+id/edt_city"
+                            android:background="@drawable/style_btn_2"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                            android:inputType="textAutoComplete"
+                            android:maxLength="70"
+                            android:paddingTop="7dp"
+                            android:paddingBottom="7dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
-                        android:minHeight="50dp"
                         android:layout_height="wrap_content"
-                        android:hint="Ciudad"
                         android:background="@drawable/style_btn_2"
-                        android:layout_marginStart="10dp"
-                        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                        android:inputType="textAutoComplete"
-                        android:maxLength="70"
-                        android:paddingStart="20dp"
-                        />
+                        android:hint="Ciudad"
+                        android:paddingHorizontal="4dp"
+                        android:layout_marginStart="4dp"
+                        app:endIconMode="dropdown_menu">
+
+                        <AutoCompleteTextView
+                            android:id="@+id/edt_city"
+                            android:layout_width="match_parent"
+                            android:layout_height="35dp"
+                            android:background="@drawable/style_btn_2"
+                            android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
+                            android:inputType="textAutoComplete"
+                            android:maxLength="70"
+                            android:paddingTop="7dp"
+                            android:paddingBottom="7dp"
+                            android:paddingStart="20dp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
 
                 </LinearLayout>
 
@@ -389,6 +420,7 @@
                         app:layout_constraintEnd_toEndOf="@+id/cardView"
                         app:layout_constraintTop_toTopOf="@+id/cardView" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -400,24 +432,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:background="@drawable/style_btn_2"
+                        android:hint="Estado Civil"
                         android:paddingHorizontal="4dp"
-                        app:endIconMode="dropdown_menu"
-                        android:hint="Estado Civil">
+                        app:endIconMode="dropdown_menu">
 
                         <AutoCompleteTextView
                             android:id="@+id/edt_estado_civil"
                             android:layout_width="match_parent"
-                            android:layout_height="35dp"
                             android:layout_gravity="center_horizontal"
                             android:background="@drawable/style_btn_2"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
                             android:inputType="textAutoComplete"
                             android:maxLength="70"
-                            android:paddingBottom="7dp"
+                            android:layout_height="35dp"
                             android:paddingTop="7dp"
-                            android:textColorHighlight="@color/color_primary"/>
+                            android:paddingBottom="7dp"
+                            android:textColorHighlight="@color/color_primary" />
                     </com.google.android.material.textfield.TextInputLayout>
-
 
                 </LinearLayout>
 
@@ -435,6 +466,7 @@
                         android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -459,10 +491,10 @@
                             android:hint="Teléfono"
                             android:inputType="phone"
                             android:maxLength="13"
-                            android:textColorHighlight="@color/color_primary"
-                            android:textCursorDrawable="@null"
                             android:paddingTop="7dp"
-                            android:paddingBottom="7dp"/>
+                            android:paddingBottom="7dp"
+                            android:textColorHighlight="@color/color_primary"
+                            android:textCursorDrawable="@null" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
 
@@ -481,6 +513,7 @@
                         android:textColor="@color/black"
                         android:textStyle="bold" />
                 </LinearLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -488,7 +521,7 @@
 
 
                     <com.google.android.material.textfield.TextInputLayout
-                       android:id="@+id/lyt_direccion"
+                        android:id="@+id/lyt_direccion"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -504,14 +537,12 @@
                             android:hint="Dirreción"
                             android:inputType="text"
                             android:maxLength="70"
-                            android:textColorHighlight="@color/color_primary"
-                            android:textCursorDrawable="@null"
                             android:paddingTop="7dp"
-                            android:paddingBottom="7dp"/>
+                            android:paddingBottom="7dp"
+                            android:textColorHighlight="@color/color_primary"
+                            android:textCursorDrawable="@null" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
-
-
 
 
                 <!--
@@ -572,8 +603,8 @@
                     android:elevation="2dp"
                     android:text="Registrarse"
                     android:textAllCaps="false"
-                    android:textStyle="bold"
                     android:textSize="20sp"
+                    android:textStyle="bold"
                     app:cornerRadius="20dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

@@ -45,7 +45,7 @@ class RegisterActivity : AppCompatActivity() {
           override fun afterTextChanged(p0: Editable?) {
               if (ed_pais.text.toString().length >= 3) {
                   var nombre = listarStates()
-                  edt_departmen.setText(nombre.get(0).toString() ?: "")
+                  //edt_departmen.setText(nombre.get(0).toString() ?: "")
               } else {
                   edt_departmen.setText("")
               }
@@ -63,7 +63,7 @@ class RegisterActivity : AppCompatActivity() {
                     if (edt_departmen.text.toString().equals("Antioquia")) {
                         edt_city.setText("Medellin")
                     } else {
-                        edt_city.setText(nombre.get(0).toString() ?: "")
+                        //edt_city.setText(nombre.get(0).toString() ?: "")
                     }
                 } else {
                     edt_city.setText("")
@@ -113,9 +113,23 @@ class RegisterActivity : AppCompatActivity() {
     }
 
     fun controlFlujoedt() {
+
+        ed_pais.setOnKeyListener(View.OnKeyListener { view, keyCode, keyEvent ->
+            if (keyCode == KeyEvent.KEYCODE_ENTER) {
+
+                if (!ed_pais.text.toString().isEmpty()) {
+                    edt_departmen.requestFocus()
+                }
+                return@OnKeyListener true
+            }
+            false
+        })
+
         edt_departmen.setOnKeyListener(View.OnKeyListener { view, keyCode, keyEvent ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
-                edt_city.requestFocus()
+                if (!edt_departmen.text.toString().isEmpty()) {
+                    edt_city.requestFocus()
+                }
                 return@OnKeyListener true
             }
             false
@@ -134,12 +148,13 @@ class RegisterActivity : AppCompatActivity() {
         edt_estado_civil.setOnKeyListener(View.OnKeyListener { view, keyCode, keyEvent ->
             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                 if (!edt_estado_civil.text.toString().isEmpty()) {
-                    edt_direccion.requestFocus()
+                    edt_telefono.requestFocus()
                 }
                 return@OnKeyListener true
             }
             false
         })
+
 
     }
 
@@ -175,7 +190,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         var adapterState = ArrayAdapter(this, android.R.layout.select_dialog_item, nombresStates)
-        edt_departmen.threshold = 0
+        edt_departmen.threshold = 1
         edt_departmen.setAdapter(adapterState)
         databaseAccess.close()
 
@@ -215,7 +230,7 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         var adapterCity = ArrayAdapter(this, android.R.layout.select_dialog_item, nombresCity)
-        edt_city.threshold = 0
+        edt_city.threshold = 1
         edt_city.setAdapter(adapterCity)
         databaseAccess.close()
 
