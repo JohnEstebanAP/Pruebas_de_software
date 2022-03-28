@@ -54,9 +54,9 @@ public class DatabaseAccess {
         return cantidad;
     }
 
-    //consultar cuantos ciudades hay en total
-    public int cantidadAllCity(String city) {
-        c = db.rawQuery(" SELECT COUNT(*) FROM Municipality m  WHERE id_deparment  = (SELECT id FROM Departmen d  WHERE name = '"+city+"')" +
+    //consultar cuantos datos hay en total
+    public int cantidadAllWhere(String table, String where, String tableWhere,  String namedate) {
+        c = db.rawQuery(" SELECT COUNT(*) FROM " + table + "  WHERE "+where+"  = (SELECT id FROM "+tableWhere+" WHERE name = '"+namedate+"')" +
                 "    ", new String[]{});
         int cantidad = 0;
         while (c.moveToNext()) {
@@ -81,7 +81,7 @@ public class DatabaseAccess {
 
     //Consultar los cidades
     public String[] getDatosCity(int cantidaCity, String city) {
-        c = db.rawQuery(" SELECT name FROM Municipality m  WHERE id_deparment  = (SELECT id FROM Departmen d  WHERE name = '"+city+"')" +
+        c = db.rawQuery(" SELECT name FROM cities c  WHERE id_state  = (SELECT id FROM States s  WHERE name = '"+city+"')" +
                 "    ", new String[]{});
         String[] valores = new String[cantidaCity];
         int i = 0;

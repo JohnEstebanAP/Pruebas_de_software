@@ -401,6 +401,7 @@
                         android:layout_height="wrap_content"
                         android:background="@drawable/style_btn_2"
                         android:paddingHorizontal="4dp"
+                        app:endIconMode="dropdown_menu"
                         android:hint="Estado Civil">
 
                         <AutoCompleteTextView
@@ -410,7 +411,7 @@
                             android:layout_gravity="center_horizontal"
                             android:background="@drawable/style_btn_2"
                             android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ "
-                            android:inputType="datetime"
+                            android:inputType="textAutoComplete"
                             android:maxLength="70"
                             android:paddingBottom="7dp"
                             android:paddingTop="7dp"
